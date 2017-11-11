@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="725.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9" fx:controller="com.forge.mammon.plutus01.PortfolioController">
+   <children>
+      <TableView fx:id="table" layoutX="287.0" layoutY="202.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0">
+        <columns>
+          <TableColumn fx:id="nameColumn" prefWidth="200.0" text="Name" />
+          <TableColumn fx:id="symbolColumn" prefWidth="100.0" text="Symbol" />
+            <TableColumn fx:id="sharesColumn" prefWidth="100.0" text="Shares" />
+            <TableColumn fx:id="priceColumn" prefWidth="100.0" text="Price" />
+            <TableColumn fx:id="gainColumn" prefWidth="100.0" text="Gain" />
+            <TableColumn fx:id="percentGainColumn" prefWidth="100.0" text="Percent Gain" />
+            <TableColumn fx:id="valueColumn" prefWidth="100.0" text="Value" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
