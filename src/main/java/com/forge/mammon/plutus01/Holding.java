@@ -11,25 +11,36 @@ public class Holding {
 	
 	private StringProperty symbol;
 	
-	private FloatProperty shares;
+	private StringProperty shares;
 	
-	private FloatProperty price;
+	private StringProperty current_price;
 	
-	private FloatProperty gain;
+	private StringProperty days_gain;
 	
-	private FloatProperty percent_gain;
+	private StringProperty days_percent_gain;
 	
-	private FloatProperty value;
+	private StringProperty original_value;
 	
-	Holding(String name, String symbol, float shares, float price, float gain, float percent_gain, float value)
+	private StringProperty current_value;
+	
+	private StringProperty total_gain;
+	
+	private StringProperty total_percent_gain;
+	
+	Holding(String name, String symbol, String shares, String current_price, String days_gain, 
+			String days_percent_gain, String original_value, String current_value, String total_gain,
+			String total_percent_gain)
 	{
 		this.name = new SimpleStringProperty(name);
 		this.symbol = new SimpleStringProperty(symbol);
-		this.shares = new SimpleFloatProperty(shares);
-		this.price = new SimpleFloatProperty(price);
-		this.gain = new SimpleFloatProperty(gain);
-		this.percent_gain = new SimpleFloatProperty(percent_gain);
-		this.value = new SimpleFloatProperty(value);
+		this.shares = new SimpleStringProperty(shares);
+		this.current_price = new SimpleStringProperty(current_price);
+		this.days_gain = new SimpleStringProperty(days_gain);
+		this.days_percent_gain = new SimpleStringProperty(days_percent_gain);
+		this.original_value = new SimpleStringProperty(original_value);
+		this.current_value = new SimpleStringProperty(current_value);
+		this.total_gain = new SimpleStringProperty(total_gain);
+		this.total_percent_gain = new SimpleStringProperty(total_percent_gain);
 	}
 	
 	public void setName(String name)
@@ -42,29 +53,44 @@ public class Holding {
 		this.symbol.set(symbol);
 	}
 	
-	public void setShares(float shares)
+	public void setShares(String shares)
 	{
 		this.shares.set(shares);
 	}
 	
-	public void setPrice(float price)
+	public void setCurrentPrice(String current_price)
 	{
-		this.price.set(price);
+		this.current_price.set(current_price);
 	}
 	
-	public void setGain(float gain)
+	public void setDaysGain(String days_gain)
 	{
-		this.gain.set(gain);
+		this.days_gain.set(days_gain);
 	}
 	
-	public void setPercentGain(float gain)
+	public void setDaysPercentGain(String days_percent_gain)
 	{
-		this.percent_gain.set(gain);
+		this.days_percent_gain.set(days_percent_gain);
 	}
 	
-	public void setValue(float value)
+	public void setOriginalValue(String original_value)
 	{
-		this.value.set(value);
+		this.original_value.set(original_value);
+	}
+	
+	public void setCurrentValue(String current_value)
+	{
+		this.current_value.set(current_value);
+	}
+	
+	public void setTotalGain(String total_gain)
+	{
+		this.total_gain.set(total_gain);
+	}
+	
+	public void setTotalPercentGain(String total_percent_gain)
+	{
+		this.total_percent_gain.set(total_percent_gain);
 	}
 	
 	public String getName()
@@ -77,29 +103,44 @@ public class Holding {
 		return symbol.get();
 	}
 	
-	public Float getShares()
+	public String getShares()
 	{
 		return shares.get();
 	}
 	
-	public Float getPrice()
+	public String getCurrentPrice()
 	{
-		return price.get();
+		return current_price.get();
 	}
 	
-	public Float getGain()
+	public String getDaysGain()
 	{
-		return gain.get();
+		return days_gain.get();
 	}
 	
-	public Float getPercentGain()
+	public String getDaysPercentGain()
 	{
-		return percent_gain.get();
+		return days_percent_gain.get();
 	}
 	
-	public Float getValue()
+	public String getOriginalValue()
 	{
-		return value.get();
+		return original_value.get();
+	}
+	
+	public String getCurrentValue()
+	{
+		return current_value.get();
+	}
+	
+	public String getTotalGain()
+	{
+		return total_gain.get();
+	}
+	
+	public String getTotalPercentGain()
+	{
+		return total_percent_gain.get();
 	}
 	
 	public StringProperty getNameProperty()
@@ -112,28 +153,43 @@ public class Holding {
 		return symbol;
 	}
 	
-	public FloatProperty getSharesProperty()
+	public StringProperty getSharesProperty()
 	{
 		return shares;
 	}
 	
-	public FloatProperty getPriceProperty()
+	public StringProperty getCurrentPriceProperty()
 	{
-		return price;
+		return current_price;
 	}
 	
-	public FloatProperty getGainProperty()
+	public StringProperty getDaysGainProperty()
 	{
-		return gain;
+		return days_gain;
 	}
 	
-	public FloatProperty getPercentGainProperty()
+	public StringProperty getDaysPercentGainProperty()
 	{
-		return percent_gain;
+		return days_percent_gain;
 	}
 	
-	public FloatProperty getValueProperty()
+	public StringProperty getOriginalValueProperty()
 	{
-		return value;
+		return original_value;
+	}
+	
+	public StringProperty getCurrentValueProperty()
+	{
+		return current_value;
+	}
+	
+	public StringProperty getTotalGainProperty()
+	{
+		return total_gain;
+	}
+	
+	public StringProperty getTotalPercentGainProperty()
+	{
+		return total_percent_gain;
 	}
 }

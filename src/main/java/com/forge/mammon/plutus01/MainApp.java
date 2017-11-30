@@ -55,8 +55,7 @@ public class MainApp extends Application
 			rootLayout.setCenter(anchor);
 			
 			PortfolioController controller = loader.getController();
-			controller.initAccount();
-			controller.setMainApp(this);
+			controller.setup(this);
 		} 
 		catch(IOException e)
 		{
