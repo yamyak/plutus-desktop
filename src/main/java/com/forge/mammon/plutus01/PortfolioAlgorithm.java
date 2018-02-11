@@ -125,6 +125,10 @@ public class PortfolioAlgorithm {
 	
 	private void parseAccountData(JsonArray arr)
 	{
+		overall_original = 0.0f;
+		overall_day_change = 0.0f;
+		overall_change = 0.0f;
+		
 		for(int i = 0; i < arr.size(); i++)
 		{
 			parseHoldingData(arr.get(i).getAsJsonObject());
@@ -223,5 +227,18 @@ public class PortfolioAlgorithm {
 		}
 		
 		return true;
+	}
+	
+	public boolean refreshPortfolioData()
+	{
+		boolean status = false;
+		
+		holdingList.removeAll();
+		
+		status = loadPortfolioData();
+		
+		return status;
+		
+		
 	}
 }

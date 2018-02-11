@@ -3,6 +3,7 @@ package com.forge.mammon.plutus01;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
@@ -43,6 +44,9 @@ public class PortfolioController {
 	
 	@FXML 
 	private TableColumn<Holding, String> totalPercentColumn;
+	
+	@FXML
+	private Button refresh;
 	
 	private MainApp mainApp;
 	
@@ -124,5 +128,13 @@ public class PortfolioController {
 		
 			table.setItems(algo.getHoldingData());
 		}
+	}
+	
+	@FXML
+	public void onRefresh()
+	{
+		table.getItems().clear();
+		
+		algo.refreshPortfolioData();
 	}
 }
