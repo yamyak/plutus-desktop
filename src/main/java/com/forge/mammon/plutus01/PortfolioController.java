@@ -4,13 +4,18 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class PortfolioController {
+	
+	private static final Color GOOD = Color.GREEN;
+	private static final Color BAD = Color.ORANGERED;
 	
 	@FXML
 	private TableView<Holding> table;
@@ -70,6 +75,130 @@ public class PortfolioController {
 		currentValueColumn.setCellValueFactory(cellData -> cellData.getValue().getCurrentValueProperty());
 		totalGainColumn.setCellValueFactory(cellData -> cellData.getValue().getTotalGainProperty());
 		totalPercentColumn.setCellValueFactory(cellData -> cellData.getValue().getTotalPercentGainProperty());
+		
+		daysGainColumn.setCellFactory(column -> 
+		{
+			return new TableCell<Holding, String>() 
+			{
+				@Override
+				protected void updateItem(String item, boolean empty)
+				{
+					super.updateItem(item, empty);
+					
+					if(item == null || empty)
+					{
+						setText(null);
+						setStyle("");
+					}
+					else
+					{
+						setText(item);
+						
+						if(item.indexOf("-") != -1)
+						{
+							setTextFill(BAD);
+						}
+						else
+						{
+							setTextFill(GOOD);
+						}
+					}
+				}
+			};
+		});
+		
+		daysPercentColumn.setCellFactory(column -> 
+		{
+			return new TableCell<Holding, String>() 
+			{
+				@Override
+				protected void updateItem(String item, boolean empty)
+				{
+					super.updateItem(item, empty);
+					
+					if(item == null || empty)
+					{
+						setText(null);
+						setStyle("");
+					}
+					else
+					{
+						setText(item);
+						
+						if(item.indexOf("-") != -1)
+						{
+							setTextFill(BAD);
+						}
+						else
+						{
+							setTextFill(GOOD);
+						}
+					}
+				}
+			};
+		});
+		
+		totalGainColumn.setCellFactory(column -> 
+		{
+			return new TableCell<Holding, String>() 
+			{
+				@Override
+				protected void updateItem(String item, boolean empty)
+				{
+					super.updateItem(item, empty);
+					
+					if(item == null || empty)
+					{
+						setText(null);
+						setStyle("");
+					}
+					else
+					{
+						setText(item);
+						
+						if(item.indexOf("-") != -1)
+						{
+							setTextFill(BAD);
+						}
+						else
+						{
+							setTextFill(GOOD);
+						}
+					}
+				}
+			};
+		});
+		
+		totalPercentColumn.setCellFactory(column -> 
+		{
+			return new TableCell<Holding, String>() 
+			{
+				@Override
+				protected void updateItem(String item, boolean empty)
+				{
+					super.updateItem(item, empty);
+					
+					if(item == null || empty)
+					{
+						setText(null);
+						setStyle("");
+					}
+					else
+					{
+						setText(item);
+						
+						if(item.indexOf("-") != -1)
+						{
+							setTextFill(BAD);
+						}
+						else
+						{
+							setTextFill(GOOD);
+						}
+					}
+				}
+			};
+		});
 	}
 	
 	private boolean displaySetup()
