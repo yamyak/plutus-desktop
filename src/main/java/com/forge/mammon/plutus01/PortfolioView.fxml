@@ -15,6 +15,7 @@
             <TableColumn fx:id="currentPriceColumn" prefWidth="75.0" text="Price" />
             <TableColumn fx:id="daysGainColumn" prefWidth="75.0" text="Day's Gain" />
             <TableColumn fx:id="daysPercentColumn" prefWidth="90.0" text="Day's Gain (%)" />
+            <TableColumn fx:id="daysTotalGainColumn" prefWidth="75.0" text="Day's Total" />
             <TableColumn fx:id="originalValueColumn" prefWidth="75.0" text="Basis Value" />
             <TableColumn fx:id="currentValueColumn" prefWidth="75.0" text="Value" />
             <TableColumn fx:id="totalGainColumn" prefWidth="75.0" text="Total Gain" />

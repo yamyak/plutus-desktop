@@ -19,6 +19,8 @@ public class Holding {
 	
 	private StringProperty days_percent_gain;
 	
+	private StringProperty days_total_gain;
+	
 	private StringProperty original_value;
 	
 	private StringProperty current_value;
@@ -27,8 +29,8 @@ public class Holding {
 	
 	private StringProperty total_percent_gain;
 	
-	Holding(String name, String symbol, String shares, String current_price, String days_gain, 
-			String days_percent_gain, String original_value, String current_value, String total_gain,
+	Holding(String name, String symbol, String shares, String current_price, String days_gain, String days_percent_gain,
+			String days_total_gain, String original_value, String current_value, String total_gain,
 			String total_percent_gain)
 	{
 		this.name = new SimpleStringProperty(name);
@@ -37,6 +39,7 @@ public class Holding {
 		this.current_price = new SimpleStringProperty(current_price);
 		this.days_gain = new SimpleStringProperty(days_gain);
 		this.days_percent_gain = new SimpleStringProperty(days_percent_gain);
+		this.days_total_gain = new SimpleStringProperty(days_total_gain);
 		this.original_value = new SimpleStringProperty(original_value);
 		this.current_value = new SimpleStringProperty(current_value);
 		this.total_gain = new SimpleStringProperty(total_gain);
@@ -71,6 +74,11 @@ public class Holding {
 	public void setDaysPercentGain(String days_percent_gain)
 	{
 		this.days_percent_gain.set(days_percent_gain);
+	}
+	
+	public void setDaysTotalGain(String days_total_gain)
+	{
+		this.days_total_gain.set(days_total_gain);
 	}
 	
 	public void setOriginalValue(String original_value)
@@ -123,6 +131,11 @@ public class Holding {
 		return days_percent_gain.get();
 	}
 	
+	public String getDaysTotalGain()
+	{
+		return days_total_gain.get();
+	}
+	
 	public String getOriginalValue()
 	{
 		return original_value.get();
@@ -171,6 +184,11 @@ public class Holding {
 	public StringProperty getDaysPercentGainProperty()
 	{
 		return days_percent_gain;
+	}
+	
+	public StringProperty getDaysTotalGainProperty()
+	{
+		return days_total_gain;
 	}
 	
 	public StringProperty getOriginalValueProperty()

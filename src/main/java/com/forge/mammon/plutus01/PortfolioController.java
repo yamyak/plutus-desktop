@@ -38,6 +38,9 @@ public class PortfolioController {
 	@FXML 
 	private TableColumn<Holding, String> daysPercentColumn;
 	
+	@FXML
+	private TableColumn<Holding, String> daysTotalGainColumn;
+	
 	@FXML 
 	private TableColumn<Holding, String> originalValueColumn;
 	
@@ -71,12 +74,46 @@ public class PortfolioController {
 		currentPriceColumn.setCellValueFactory(cellData -> cellData.getValue().getCurrentPriceProperty());
 		daysGainColumn.setCellValueFactory(cellData -> cellData.getValue().getDaysGainProperty());
 		daysPercentColumn.setCellValueFactory(cellData -> cellData.getValue().getDaysPercentGainProperty());
+		daysTotalGainColumn.setCellValueFactory(cellData -> cellData.getValue().getDaysTotalGainProperty());
 		originalValueColumn.setCellValueFactory(cellData -> cellData.getValue().getOriginalValueProperty());
 		currentValueColumn.setCellValueFactory(cellData -> cellData.getValue().getCurrentValueProperty());
 		totalGainColumn.setCellValueFactory(cellData -> cellData.getValue().getTotalGainProperty());
 		totalPercentColumn.setCellValueFactory(cellData -> cellData.getValue().getTotalPercentGainProperty());
 		
 		daysGainColumn.setCellFactory(column -> 
+		{
+			return new TableCell<Holding, String>() 
+			{
+				@Override
+				protected void updateItem(String item, boolean empty)
+				{
+					super.updateItem(item, empty);
+					
+					if(item == null || empty)
+					{
+						setText(null);
+						setStyle("");
+					}
+					else
+					{
+						setText(item);
+						
+						// SPECIAL CASE FOR THE DASH IN THE EMPTY TOTAL ROW
+						
+						if(item.indexOf("-") == -1)
+						{
+							setTextFill(GOOD);
+						}
+						else if(item.indexOf("-") != 0)
+						{
+							setTextFill(BAD);
+						}
+					}
+				}
+			};
+		});
+		
+		daysPercentColumn.setCellFactory(column -> 
 		{
 			return new TableCell<Holding, String>() 
 			{
@@ -107,7 +144,7 @@ public class PortfolioController {
 			};
 		});
 		
-		daysPercentColumn.setCellFactory(column -> 
+		daysTotalGainColumn.setCellFactory(column -> 
 		{
 			return new TableCell<Holding, String>() 
 			{

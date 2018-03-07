@@ -91,6 +91,7 @@ public class PortfolioAlgorithm {
 		String current_price = obj.getAsJsonObject("displaydata").get("lastprice").getAsString();
 		
 		float total_price_change = obj.get("marketvaluechange").getAsFloat();
+		String days_price_change = "$" + String.format("%.02f", total_price_change);
 		float price_change = total_price_change/obj.get("qty").getAsFloat();
 		String price_change_string = "$" + String.format("%.02f", price_change);
 		
@@ -110,7 +111,7 @@ public class PortfolioAlgorithm {
 		float origin_value = obj.get("costbasis").getAsFloat();
 		updateOverallCounts(origin_value, total_price_change, gain);
 		
-		Holding h = new Holding(name, symbol, qty, current_price, price_change_string, percent_change_string,
+		Holding h = new Holding(name, symbol, qty, current_price, price_change_string, percent_change_string, days_price_change,
 								original_value, current_value, total_gain, total_percent_string);
 		
 		holdingList.add(h);
@@ -144,7 +145,7 @@ public class PortfolioAlgorithm {
 		float all_percent = 100 * overall_change / overall_original;
 		String gain_percent_str = String.format("%.02f", all_percent) + "%";
 		
-		Holding h = new Holding("TOTAL", "-", "-", price_string, day_change_string, day_per_str,
+		Holding h = new Holding("TOTAL", "-", "-", price_string, "-", day_per_str, day_change_string,
 				original_str, price_string, gain_string, gain_percent_str);
 		
 		holdingList.add(h);
