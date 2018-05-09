@@ -12,6 +12,7 @@ public class Crypter {
 	private static SecretKeySpec secretKey;
     private static byte[] key;
     
+    // Set the encryption key
     public static void setKey(String newKey)
     {
         MessageDigest sha = null;
@@ -34,7 +35,8 @@ public class Crypter {
             e.printStackTrace();
         }
     }
- 
+    
+    // Encrypt a string
     public static String encrypt(String strToEncrypt, String secret)
     {
         try
@@ -52,6 +54,7 @@ public class Crypter {
         return null;
     }
     
+    // Decrypt a string
     public static String decrypt(String strToDecrypt, String secret)
     {
         try

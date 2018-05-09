@@ -25,6 +25,7 @@ public class MainApp extends Application
 		showPortfolio();
 	}
 	
+  // Initialize the view
 	public void initRootLoader()
 	{
 		try 
@@ -48,12 +49,14 @@ public class MainApp extends Application
 	{
 		try 
 		{
+      // Load up the portfolio view
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainApp.class.getResource("PortfolioView.fxml"));
 			AnchorPane anchor = (AnchorPane) loader.load();
 			
 			rootLayout.setCenter(anchor);
 			
+      // Setup the portfolio controller
 			PortfolioController controller = loader.getController();
 			controller.setup(this);
 		} 

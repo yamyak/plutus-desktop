@@ -22,6 +22,7 @@ public class DataLoader {
 		initLoader(consumer_key, consumer_secret, oauth_token, oauth_token_secret);
 	}
 	
+  // Initializes the Ally investing API using the OAuth keys
 	public void initLoader(String consumer_key, String consumer_secret, String oauth_token, String oauth_token_secret)
 	{
 		if(service == null)
@@ -33,6 +34,7 @@ public class DataLoader {
 		}
 	}
 
+  // Request account data from the Ally investing API
 	public Response get(String request_url)
 	{
 		Response response = null;

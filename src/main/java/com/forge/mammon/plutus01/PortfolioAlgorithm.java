@@ -40,6 +40,7 @@ public class PortfolioAlgorithm {
 		return holdingList;
 	}
 	
+  // Check to see if account already setup
 	public boolean checkForAccount()
     {
 		String path = System.getProperty("user.home") + "\\.plconfig";
@@ -48,9 +49,12 @@ public class PortfolioAlgorithm {
     	return accountFile.exists();
     }
 	
+  // Retrieve the OAuth key data from account file
 	private OAuthKeys getKeys()
 	{
 		String path = System.getProperty("user.home") + "\\.plconfig";
+    
+    // System username used as encryption key
 		String name = System.getProperty("user.name");
 		
 		OAuthKeys keys = null;
@@ -66,6 +70,7 @@ public class PortfolioAlgorithm {
 			BufferedReader br = new BufferedReader(new FileReader(path));
 			while((temp = br.readLine()) != null)
 			{
+        // Decrypt the OAuth key data
 				consumer_key = Crypter.decrypt(temp, name);
 				consumer_secret = Crypter.decrypt(br.readLine(), name);
 				oauth_token = Crypter.decrypt(br.readLine(), name);
@@ -83,6 +88,7 @@ public class PortfolioAlgorithm {
 		return keys;
 	}
 	
+  // Calculate specific holding metrics based on holding JSON data
 	private void parseHoldingData(JsonObject obj)
 	{
 		String name = obj.getAsJsonObject("displaydata").get("desc").getAsString();
@@ -129,12 +135,14 @@ public class PortfolioAlgorithm {
 		overall_original = 0.0f;
 		overall_day_change = 0.0f;
 		overall_change = 0.0f;
-		
+    
+    // Iterate through holdings in account JSON data
 		for(int i = 0; i < arr.size(); i++)
 		{
 			parseHoldingData(arr.get(i).getAsJsonObject());
 		}
 		
+    // Calculate total account metrics
 		float current_price = overall_original + overall_change;
 		String price_string = "$" + String.format("%.02f", current_price);
 		String day_change_string = "$" + String.format("%.02f",overall_day_change);
@@ -157,6 +165,7 @@ public class PortfolioAlgorithm {
 		
 		OAuthKeys keys = getKeys();
 		
+    // Initialize the API data loader
 		loader.initLoader(keys.getConsumerKey(), 
 				keys.getConsumerSecret(), 
 				keys.getOAuthToken(), 
@@ -173,6 +182,8 @@ public class PortfolioAlgorithm {
 			//					 .getAsJsonObject("account").get("account").getAsString();
 			
 			//Response response2 = loader.get(ALLY_ACCOUNTS_1 + account + ALLY_ACCOUNTS_2);
+      
+      // Request data about Ally account
 			Response response2 = loader.get(ALLY_ACCOUNTS);
 			JsonObject body2 = gson.fromJson(response2.getBody(), JsonObject.class);
 			
@@ -193,6 +204,7 @@ public class PortfolioAlgorithm {
 		return status;
 	}
 	
+  // Create account and save OAuth key data to file
 	public boolean setupAccount(OAuthKeys keys)
 	{
 		String path = System.getProperty("user.home") + "\\.plconfig";
@@ -201,12 +213,13 @@ public class PortfolioAlgorithm {
 		File accountFile = new File(path);
 		
 		try 
-    	{
+    {
 			if(!accountFile.createNewFile())
 			{
 				return false;
 			}
 			
+      // Encrypt and write OAuth key data to file
 			BufferedWriter bw = new BufferedWriter(new FileWriter(path));
 			String encrypt_str = Crypter.encrypt(keys.getConsumerKey(), name);
 			bw.write(encrypt_str);

@@ -80,6 +80,10 @@ public class PortfolioController {
 		totalGainColumn.setCellValueFactory(cellData -> cellData.getValue().getTotalGainProperty());
 		totalPercentColumn.setCellValueFactory(cellData -> cellData.getValue().getTotalPercentGainProperty());
 		
+    // For all gain/loss associated columns, add functionality to change
+    // text color to red or green based on whether the the data represents
+    // a gain or a loss
+    
 		daysGainColumn.setCellFactory(column -> 
 		{
 			return new TableCell<Holding, String>() 
@@ -97,8 +101,6 @@ public class PortfolioController {
 					else
 					{
 						setText(item);
-						
-						// SPECIAL CASE FOR THE DASH IN THE EMPTY TOTAL ROW
 						
 						if(item.indexOf("-") == -1)
 						{
@@ -238,6 +240,8 @@ public class PortfolioController {
 		});
 	}
 	
+  
+  // Display the account setup dialog
 	private boolean displaySetup()
 	{
 		boolean status = false;
@@ -260,13 +264,14 @@ public class PortfolioController {
 
             dialogStage.showAndWait();
             
+            // retrieve the OAuth key data when entered
             status = controller.isOkClicked();
             status = (status && algo.setupAccount(controller.getKeys()));
             
             if(!status)
             {
             	Stage stage = (Stage) table.getScene().getWindow();
-        		stage.close();
+              stage.close();
             }
 		}
 		catch(Exception e)

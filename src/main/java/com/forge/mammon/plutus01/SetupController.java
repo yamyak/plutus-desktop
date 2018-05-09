@@ -36,6 +36,7 @@ public class SetupController {
 		
 	}
 	
+  // Checks if the provided OAuth key data is valid
 	private boolean InputValid()
 	{
 		boolean status = (consumer_key.getText().length() > 0);
@@ -51,6 +52,7 @@ public class SetupController {
 	{
 		if(InputValid())
 		{
+      // if key data is valid, set the flag and save the data as an object
 			okClicked = true;
 			key = new OAuthKeys(consumer_key.getText(), consumer_secret.getText(),
 					oauth_token.getText(), oauth_token_secret.getText());
